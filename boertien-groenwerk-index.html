@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Boertien Groenwerk voor tuinonderhoud, snoeiwerk, beplanting en borders in Emmen en omgeving.">
+  <meta name="theme-color" content="#17382a">
+  <title>Boertien Groenwerk | Emmen en omgeving</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317382a'/%3E%3Cpath d='M16 42c14-2 23-11 31-26 2 19-8 31-25 32' fill='none' stroke='%23d9e8b0' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --forest: #17382a;
+      --forest-2: #244f3b;
+      --leaf: #a8c96a;
+      --cream: #f5f2e8;
+      --paper: #fffdf8;
+      --ink: #1d2922;
+      --muted: #657169;
+      --line: rgba(23, 56, 42, .14);
+      --shadow: 0 24px 70px rgba(22, 48, 36, .15);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+
+    .site-header {
+      position: absolute;
+      z-index: 20;
+      inset: 0 0 auto;
+      padding: 24px 0;
+      color: white;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
+    .brand-logo {
+      display: block;
+      width: 46px;
+      height: 46px;
+      padding: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.94);
+      object-fit: contain;
+      box-shadow: 0 8px 24px rgba(0,0,0,.16);
+    }
+    .brand-name { font-size: 17px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { text-decoration: none; font-size: 14px; font-weight: 700; }
+    .nav-links a:not(.nav-cta) { opacity: .85; }
+    .nav-links a:not(.nav-cta):hover { opacity: 1; }
+    .nav-cta { padding: 11px 17px; border-radius: 999px; background: var(--cream); color: var(--forest); }
+    .menu-button { display: none; border: 0; color: white; background: transparent; font: inherit; font-weight: 800; }
+
+    .hero {
+      position: relative;
+      min-height: 700px;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      color: white;
+      background: var(--forest);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(9,29,20,.94) 0%, rgba(9,29,20,.76) 38%, rgba(9,29,20,.16) 72%), url("hero-garden.png") center / cover no-repeat;
+      transform: scale(1.01);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 130px;
+      background: linear-gradient(transparent, rgba(9,29,20,.33));
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 710px; padding: 180px 0 92px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 20px; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--leaf); }
+    h1 { max-width: 680px; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(48px, 7vw, 86px); font-weight: 500; line-height: .98; letter-spacing: -.045em; }
+    .hero-copy { max-width: 610px; margin: 25px 0 32px; color: rgba(255,255,255,.82); font-size: clamp(17px, 2vw, 20px); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-weight: 800; transition: transform .2s ease, background .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--leaf); color: #102419; }
+    .button-secondary { border: 1px solid rgba(255,255,255,.42); background: rgba(255,255,255,.07); color: white; backdrop-filter: blur(8px); }
+
+    .trust-strip { background: var(--forest); color: white; }
+    .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.15); }
+    .trust-item { padding: 23px 30px; border-right: 1px solid rgba(255,255,255,.15); }
+    .trust-item:first-child { padding-left: 0; }
+    .trust-item:last-child { border-right: 0; }
+    .trust-item strong { display: block; margin-bottom: 3px; color: var(--leaf); font-size: 14px; }
+    .trust-item span { color: rgba(255,255,255,.72); font-size: 14px; }
+
+    .section { padding: 105px 0; }
+    .section-intro { display: grid; grid-template-columns: .72fr 1.28fr; gap: 70px; align-items: end; margin-bottom: 48px; }
+    .section-label { color: var(--forest-2); font-size: 13px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+    h2 { margin: 8px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(38px, 5vw, 62px); font-weight: 500; line-height: 1.05; letter-spacing: -.035em; }
+    .section-intro p { max-width: 580px; margin: 0; color: var(--muted); font-size: 18px; }
+
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .service-card { position: relative; min-height: 300px; padding: 30px; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: #f8f8f2; }
+    .service-card::after { content: attr(data-number); position: absolute; right: 22px; bottom: -20px; color: rgba(23,56,42,.06); font-family: Georgia, serif; font-size: 120px; line-height: 1; }
+    .service-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 54px; border-radius: 50%; background: var(--forest); color: var(--leaf); font-size: 22px; }
+    .service-card h3 { position: relative; z-index: 1; margin: 0 0 10px; font-size: 23px; letter-spacing: -.025em; }
+    .service-card p { position: relative; z-index: 1; margin: 0; color: var(--muted); }
+
+    .about { background: var(--cream); }
+    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: center; }
+    .about-panel { padding: 52px; border-radius: 26px; background: var(--forest); color: white; box-shadow: var(--shadow); }
+    .about-panel h2 { margin-bottom: 25px; }
+    .about-panel p { color: rgba(255,255,255,.75); font-size: 18px; }
+    .values { display: grid; gap: 18px; }
+    .value { padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .value:last-child { border-bottom: 0; }
+    .value strong { display: block; margin-bottom: 5px; color: var(--forest); font-size: 19px; }
+    .value p { margin: 0; color: var(--muted); }
+
+    .contact { padding: 90px 0; background: #10291e; color: white; }
+    .contact-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 70px; align-items: center; }
+    .contact h2 { max-width: 700px; }
+    .contact p { max-width: 610px; color: rgba(255,255,255,.72); font-size: 18px; }
+    .contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .whatsapp-button { gap: 11px; background: #25d366; color: #092b17; }
+    .whatsapp-icon { width: 22px; height: 22px; }
+    .contact-note { color: rgba(255,255,255,.55); font-size: 13px; }
+
+    footer { padding: 25px 0; background: #0b1d15; color: rgba(255,255,255,.58); }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; font-size: 13px; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 860px) {
+      .menu-button { display: block; }
+      .nav-links { position: absolute; top: 74px; right: 20px; left: 20px; display: none; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px; border-radius: 18px; background: rgba(13,38,27,.97); box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 14px; }
+      .nav-cta { text-align: center; }
+      .hero { min-height: 650px; }
+      .hero::before { background: linear-gradient(90deg, rgba(9,29,20,.92), rgba(9,29,20,.6)), url("hero-garden.png") 58% center / cover no-repeat; }
+      .trust-grid { grid-template-columns: 1fr; padding: 12px 0; }
+      .trust-item, .trust-item:first-child { padding: 14px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+      .trust-item:last-child { border-bottom: 0; }
+      .section { padding: 78px 0; }
+      .section-intro, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .services { grid-template-columns: 1fr; }
+      .service-card { min-height: 250px; }
+      .service-icon { margin-bottom: 38px; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(100% - 28px, 1160px); }
+      .site-header { padding: 17px 0; }
+      .brand-name { font-size: 15px; }
+      .hero { min-height: 680px; }
+      .hero-content { padding: 145px 0 62px; }
+      .hero-actions { flex-direction: column; }
+      .button { width: 100%; }
+      .section-intro p { font-size: 16px; }
+      .about-panel { padding: 32px 24px; }
+      .footer-row { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Hoofdnavigatie">
+      <a class="brand" href="#top" aria-label="Boertien Groenwerk, naar boven">
+        <img class="brand-logo" src="logo.png" alt="Logo van Boertien Groenwerk">
+        <span class="brand-name">Boertien Groenwerk</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#diensten">Diensten</a>
+        <a href="#werkwijze">Werkwijze</a>
+        <a class="nav-cta" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-content">
+        <p class="eyebrow">Groenwerk in Drenthe</p>
+        <h1>Een tuin die goed voelt én goed blijft.</h1>
+        <p class="hero-copy">Van zorgvuldig snoeiwerk tot een sterke, kleurrijke border. Boertien Groenwerk houdt uw tuin gezond, rustig en verzorgd.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#contact">Vraag een offerte aan</a>
+          <a class="button button-secondary" href="#diensten">Bekijk onze diensten</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item"><strong>Persoonlijk contact</strong><span>Korte lijnen en duidelijke afspraken</span></div>
+        <div class="trust-item"><strong>Verzorgd resultaat</strong><span>Aandacht voor ieder detail</span></div>
+        <div class="trust-item"><strong>Emmen en omgeving</strong><span>Actief in de regio Drenthe</span></div>
+      </div>
+    </div>
+
+    <section class="section" id="diensten">
+      <div class="container">
+        <div class="section-intro reveal">
+          <div>
+            <span class="section-label">Onze diensten</span>
+            <h2>Goed groenwerk begint met aandacht.</h2>
+          </div>
+          <p>Geen tuin is hetzelfde. Daarom kijken we eerst naar wat uw tuin nodig heeft en spreken we vooraf duidelijk af wat we gaan doen.</p>
+        </div>
+        <div class="services">
+          <article class="service-card reveal" data-number="01">
+            <div class="service-icon" aria-hidden="true">✦</div>
+            <h3>Tuinonderhoud</h3>
+            <p>Eenmalig of periodiek onderhoud om uw tuin netjes, gezond en overzichtelijk te houden.</p>
+          </article>
+          <article class="service-card reveal" data-number="02">
+            <div class="service-icon" aria-hidden="true">⌁</div>
+            <h3>Snoeiwerk</h3>
+            <p>Hagen, struiken en beplanting vakkundig terugbrengen voor een sterke en verzorgde groei.</p>
+          </article>
+          <article class="service-card reveal" data-number="03">
+            <div class="service-icon" aria-hidden="true">❋</div>
+            <h3>Beplanting & borders</h3>
+            <p>Van plantkeuze tot aanleg: borders met kleur, structuur en rust door alle seizoenen heen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="werkwijze">
+      <div class="container about-grid">
+        <div class="about-panel reveal">
+          <span class="section-label" style="color: var(--leaf)">Onze werkwijze</span>
+          <h2>Betrouwbaar, praktisch en netjes.</h2>
+          <p>We luisteren naar uw wensen, denken mee over een haalbare oplossing en laten de werkplek verzorgd achter.</p>
+          <a class="button button-primary" href="#contact">Bespreek uw tuin</a>
+        </div>
+        <div class="values reveal">
+          <div class="value"><strong>01 — Kennismaken</strong><p>U vertelt wat u wilt verbeteren of onderhouden.</p></div>
+          <div class="value"><strong>02 — Duidelijke afspraak</strong><p>We spreken werkzaamheden, planning en prijs vooraf af.</p></div>
+          <div class="value"><strong>03 — Verzorgde uitvoering</strong><p>We werken met aandacht en leveren de tuin netjes op.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <span class="section-label" style="color: var(--leaf)">Contact</span>
+          <h2>Wilt u weten wat we voor uw tuin kunnen doen?</h2>
+          <p>Stuur gerust een bericht met een korte uitleg en enkele foto's. Dan kunnen we snel en gericht reageren.</p>
+        </div>
+        <div class="contact-actions reveal">
+          <a class="button whatsapp-button" href="https://wa.me/31629203638?text=Hallo%20Boertien%20Groenwerk%2C%20ik%20wil%20graag%20meer%20informatie%20over%20mijn%20tuin." target="_blank" rel="noopener noreferrer">
+            <img class="whatsapp-icon" src="https://cdn.simpleicons.org/whatsapp/092b17" alt="">
+            Stuur een WhatsApp
+          </a>
+          <span class="contact-note">Stuur gerust enkele foto’s van de tuin mee.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <span>© 2026 Boertien Groenwerk</span>
+      <span>Tuinonderhoud · Snoeiwerk · Beplanting</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('#nav-links');
+    menuButton.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    navLinks.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
