@@ -12,15 +12,33 @@ body {
 
 header {
     min-height: 420px;
-    padding: 120px 20px;
-    background: linear-gradient(135deg, #173d28, #3e704b);
-    color: white;
+    padding: 70px 20px;
+    background-color: white;
+    color: #243027;
     text-align: center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 52px;
+.bedrijfslogo {
+    display: block;
+    width: min(420px, 85%);
+    max-height: 250px;
+    margin: 0 auto 20px;
+    object-fit: contain;
+}
+
+.verborgen-titel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+header p {
+    margin-top: 10px;
+    color: #285c39;
+    font-size: 21px;
+    font-weight: bold;
 }
 
 header p {
