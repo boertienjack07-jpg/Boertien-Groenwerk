@@ -1,1 +1,865 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Boertien Groenwerk voor tuinonderhoud, snoeiwerk, beplanting en borders in Emmen en omgeving."
+    >
+
+    <title>Boertien Groenwerk</title>
+
+    <style>
+        :root {
+            --donkergroen: #17382a;
+            --middengroen: #285440;
+            --lichtgroen: #a8c96a;
+            --creme: #f5f2e8;
+            --wit: #ffffff;
+            --tekst: #1d2922;
+            --grijs: #657169;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background-color: #fffdf8;
+            color: var(--tekst);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* Navigatie */
+
+        .pagina-header {
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            right: 0;
+            left: 0;
+            padding: 22px 0;
+            color: white;
+        }
+
+        .navigatie {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .bedrijfsnaam {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .bedrijfslogo {
+            width: 48px;
+            height: 48px;
+            padding: 4px;
+            background-color: white;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .menu a {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .menu-contact {
+            padding: 11px 18px;
+            background-color: var(--creme);
+            color: var(--donkergroen) !important;
+            border-radius: 30px;
+        }
+
+        .menu-knop {
+            display: none;
+            padding: 8px;
+            border: 0;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Grote bovenkant */
+
+        .hero {
+            position: relative;
+            display: flex;
+            min-height: 700px;
+            align-items: flex-end;
+            overflow: hidden;
+            background-color: var(--donkergroen);
+            color: white;
+        }
+
+        .hero::before {
+            position: absolute;
+            content: "";
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(9, 29, 20, 0.96) 0%,
+                    rgba(9, 29, 20, 0.80) 40%,
+                    rgba(9, 29, 20, 0.25) 75%
+                ),
+                url("hero-garden.png");
+
+            background-position: center;
+            background-size: cover;
+        }
+
+        .hero-inhoud {
+            position: relative;
+            z-index: 1;
+            max-width: 750px;
+            padding: 180px 0 90px;
+        }
+
+        .kleine-titel {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 20px;
+            color: var(--lichtgroen);
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .kleine-titel::before {
+            width: 30px;
+            height: 2px;
+            background-color: var(--lichtgroen);
+            content: "";
+        }
+
+        .hero h1 {
+            max-width: 720px;
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(50px, 7vw, 86px);
+            font-weight: normal;
+            letter-spacing: -3px;
+            line-height: 0.98;
+        }
+
+        .hero-tekst {
+            max-width: 620px;
+            margin: 26px 0 32px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 20px;
+        }
+
+        .knoppen {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .knop {
+            display: inline-flex;
+            min-height: 52px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 23px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .knop:hover {
+            transform: translateY(-2px);
+        }
+
+        .knop-groen {
+            background-color: var(--lichtgroen);
+            color: #102419;
+        }
+
+        .knop-doorzichtig {
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            background-color: rgba(255, 255, 255, 0.08);
+            color: white;
+        }
+
+        /* Voordelen */
+
+        .voordelen {
+            background-color: var(--donkergroen);
+            color: white;
+        }
+
+        .voordelen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .voordeel {
+            padding: 24px 30px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .voordeel:first-child {
+            padding-left: 0;
+        }
+
+        .voordeel:last-child {
+            border-right: 0;
+        }
+
+        .voordeel strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--lichtgroen);
+            font-size: 14px;
+        }
+
+        .voordeel span {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 14px;
+        }
+
+        /* Algemene onderdelen */
+
+        .onderdeel {
+            padding: 100px 0;
+        }
+
+        .onderdeel-kop {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: end;
+            gap: 65px;
+            margin-bottom: 48px;
+        }
+
+        .label {
+            color: var(--middengroen);
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin: 8px 0 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(38px, 5vw, 62px);
+            font-weight: normal;
+            letter-spacing: -2px;
+            line-height: 1.05;
+        }
+
+        .onderdeel-kop p {
+            max-width: 580px;
+            margin: 0;
+            color: var(--grijs);
+            font-size: 18px;
+        }
+
+        /* Diensten */
+
+        .diensten {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+        }
+
+        .dienst {
+            position: relative;
+            min-height: 300px;
+            padding: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(23, 56, 42, 0.14);
+            background-color: #f8f8f2;
+            border-radius: 22px;
+        }
+
+        .dienst-nummer {
+            position: absolute;
+            right: 18px;
+            bottom: -25px;
+            color: rgba(23, 56, 42, 0.06);
+            font-family: Georgia, serif;
+            font-size: 120px;
+            line-height: 1;
+        }
+
+        .dienst-icoon {
+            display: grid;
+            width: 48px;
+            height: 48px;
+            place-items: center;
+            margin-bottom: 50px;
+            background-color: var(--donkergroen);
+            color: var(--lichtgroen);
+            border-radius: 50%;
+            font-size: 22px;
+        }
+
+        .dienst h3 {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 10px;
+            color: var(--donkergroen);
+            font-size: 23px;
+        }
+
+        .dienst p {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            color: var(--grijs);
+        }
+
+        /* Werkwijze */
+
+        .werkwijze {
+            background-color: var(--creme);
+        }
+
+        .werkwijze-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .werkwijze-blok {
+            padding: 50px;
+            background-color: var(--donkergroen);
+            color: white;
+            border-radius: 26px;
+            box-shadow: 0 25px 70px rgba(22, 48, 36, 0.18);
+        }
+
+        .werkwijze-blok .label {
+            color: var(--lichtgroen);
+        }
+
+        .werkwijze-blok h2 {
+            margin-bottom: 24px;
+        }
+
+        .werkwijze-blok p {
+            margin-bottom: 28px;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 18px;
+        }
+
+        .stappen {
+            display: grid;
+            gap: 10px;
+        }
+
+        .stap {
+            padding: 23px 0;
+            border-bottom: 1px solid rgba(23, 56, 42, 0.15);
+        }
+
+        .stap:last-child {
+            border-bottom: 0;
+        }
+
+        .stap strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--donkergroen);
+            font-size: 19px;
+        }
+
+        .stap p {
+            margin: 0;
+            color: var(--grijs);
+        }
+
+        /* Contact */
+
+        .contact {
+            padding: 90px 0;
+            background-color: #10291e;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .contact .label {
+            color: var(--lichtgroen);
+        }
+
+        .contact p {
+            max-width: 620px;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 18px;
+        }
+
+        .contact-knoppen {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 13px;
+        }
+
+        .whatsapp-knop {
+            gap: 10px;
+            background-color: #25d366;
+            color: #092b17;
+        }
+
+        .whatsapp-logo {
+            width: 23px;
+            height: 23px;
+        }
+
+        .contact-opmerking {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 13px;
+        }
+
+        /* Onderkant */
+
+        footer {
+            padding: 25px 0;
+            background-color: #0b1d15;
+            color: rgba(255, 255, 255, 0.60);
+        }
+
+        .footer-inhoud {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        /* Telefoon */
+
+        @media (max-width: 850px) {
+            .menu-knop {
+                display: block;
+            }
+
+            .menu {
+                position: absolute;
+                top: 75px;
+                right: 20px;
+                left: 20px;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 5px;
+                padding: 15px;
+                background-color: rgba(13, 38, 27, 0.98);
+                border-radius: 18px;
+            }
+
+            .menu.open {
+                display: flex;
+            }
+
+            .menu a {
+                padding: 12px 14px;
+            }
+
+            .menu-contact {
+                text-align: center;
+            }
+
+            .hero {
+                min-height: 680px;
+            }
+
+            .hero::before {
+                background-image:
+                    linear-gradient(
+                        90deg,
+                        rgba(9, 29, 20, 0.94),
+                        rgba(9, 29, 20, 0.62)
+                    ),
+                    url("hero-garden.png");
+            }
+
+            .voordelen-grid {
+                grid-template-columns: 1fr;
+                padding: 12px 0;
+            }
+
+            .voordeel,
+            .voordeel:first-child {
+                padding: 14px 0;
+                border-right: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            .voordeel:last-child {
+                border-bottom: 0;
+            }
+
+            .onderdeel {
+                padding: 75px 0;
+            }
+
+            .onderdeel-kop,
+            .werkwijze-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .diensten {
+                grid-template-columns: 1fr;
+            }
+
+            .dienst {
+                min-height: 250px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .container {
+                width: calc(100% - 28px);
+            }
+
+            .pagina-header {
+                padding: 16px 0;
+            }
+
+            .bedrijfslogo {
+                width: 42px;
+                height: 42px;
+            }
+
+            .bedrijfsnaam span {
+                font-size: 15px;
+            }
+
+            .hero-inhoud {
+                padding: 145px 0 65px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+                letter-spacing: -2px;
+            }
+
+            .hero-tekst {
+                font-size: 17px;
+            }
+
+            .knoppen {
+                flex-direction: column;
+            }
+
+            .knop {
+                width: 100%;
+            }
+
+            .werkwijze-blok {
+                padding: 32px 24px;
+            }
+
+            .footer-inhoud {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="pagina-header">
+        <nav class="navigatie container">
+            <a class="bedrijfsnaam" href="#boven">
+                <img
+                    class="bedrijfslogo"
+                    src="logo.png"
+                    alt="Logo van Boertien Groenwerk"
+                >
+
+                <span>Boertien Groenwerk</span>
+            </a>
+
+            <button
+                class="menu-knop"
+                type="button"
+                aria-expanded="false"
+                aria-controls="menu"
+            >
+                Menu
+            </button>
+
+            <div class="menu" id="menu">
+                <a href="#diensten">Diensten</a>
+                <a href="#werkwijze">Werkwijze</a>
+                <a class="menu-contact" href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="boven">
+        <section class="hero">
+            <div class="hero-inhoud container">
+                <p class="kleine-titel">Groenwerk in Drenthe</p>
+
+                <h1>
+                    Een tuin die goed voelt én goed blijft.
+                </h1>
+
+                <p class="hero-tekst">
+                    Van zorgvuldig snoeiwerk tot een sterke,
+                    kleurrijke border. Boertien Groenwerk houdt
+                    uw tuin gezond, rustig en verzorgd.
+                </p>
+
+                <div class="knoppen">
+                    <a class="knop knop-groen" href="#contact">
+                        Vraag een offerte aan
+                    </a>
+
+                    <a class="knop knop-doorzichtig" href="#diensten">
+                        Bekijk onze diensten
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="voordelen">
+            <div class="voordelen-grid container">
+                <div class="voordeel">
+                    <strong>Persoonlijk contact</strong>
+                    <span>Korte lijnen en duidelijke afspraken</span>
+                </div>
+
+                <div class="voordeel">
+                    <strong>Verzorgd resultaat</strong>
+                    <span>Aandacht voor ieder detail</span>
+                </div>
+
+                <div class="voordeel">
+                    <strong>Emmen en omgeving</strong>
+                    <span>Actief in de regio Drenthe</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="onderdeel" id="diensten">
+            <div class="container">
+                <div class="onderdeel-kop">
+                    <div>
+                        <span class="label">Onze diensten</span>
+
+                        <h2>
+                            Goed groenwerk begint met aandacht.
+                        </h2>
+                    </div>
+
+                    <p>
+                        Geen tuin is hetzelfde. Daarom kijken we
+                        eerst naar wat uw tuin nodig heeft en spreken
+                        we vooraf duidelijk af wat we gaan doen.
+                    </p>
+                </div>
+
+                <div class="diensten">
+                    <article class="dienst">
+                        <span class="dienst-nummer">01</span>
+                        <div class="dienst-icoon">✦</div>
+
+                        <h3>Tuinonderhoud</h3>
+
+                        <p>
+                            Eenmalig of periodiek onderhoud om uw tuin
+                            netjes, gezond en overzichtelijk te houden.
+                        </p>
+                    </article>
+
+                    <article class="dienst">
+                        <span class="dienst-nummer">02</span>
+                        <div class="dienst-icoon">⌁</div>
+
+                        <h3>Snoeiwerk</h3>
+
+                        <p>
+                            Hagen, struiken en beplanting vakkundig
+                            terugbrengen voor een sterke en verzorgde groei.
+                        </p>
+                    </article>
+
+                    <article class="dienst">
+                        <span class="dienst-nummer">03</span>
+                        <div class="dienst-icoon">❋</div>
+
+                        <h3>Beplanting en borders</h3>
+
+                        <p>
+                            Van plantkeuze tot aanleg: borders met kleur,
+                            structuur en rust door alle seizoenen heen.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="onderdeel werkwijze" id="werkwijze">
+            <div class="werkwijze-grid container">
+                <div class="werkwijze-blok">
+                    <span class="label">Onze werkwijze</span>
+
+                    <h2>
+                        Betrouwbaar, praktisch en netjes.
+                    </h2>
+
+                    <p>
+                        We luisteren naar uw wensen, denken mee over
+                        een haalbare oplossing en laten de werkplek
+                        verzorgd achter.
+                    </p>
+
+                    <a class="knop knop-groen" href="#contact">
+                        Bespreek uw tuin
+                    </a>
+                </div>
+
+                <div class="stappen">
+                    <div class="stap">
+                        <strong>01 — Kennismaken</strong>
+                        <p>
+                            U vertelt wat u wilt verbeteren of onderhouden.
+                        </p>
+                    </div>
+
+                    <div class="stap">
+                        <strong>02 — Duidelijke afspraak</strong>
+                        <p>
+                            We spreken werkzaamheden, planning en prijs vooraf af.
+                        </p>
+                    </div>
+
+                    <div class="stap">
+                        <strong>03 — Verzorgde uitvoering</strong>
+                        <p>
+                            We werken met aandacht en leveren de tuin netjes op.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="contact-grid container">
+                <div>
+                    <span class="label">Contact</span>
+
+                    <h2>
+                        Wilt u weten wat we voor uw tuin kunnen doen?
+                    </h2>
+
+                    <p>
+                        Stuur gerust een bericht met een korte uitleg
+                        en enkele foto's. Dan kunnen we snel en gericht reageren.
+                    </p>
+                </div>
+
+                <div class="contact-knoppen">
+                    <a
+                        class="knop whatsapp-knop"
+                        href="https://wa.me/31629203638?text=Hallo%20Boertien%20Groenwerk%2C%20ik%20wil%20graag%20meer%20informatie%20over%20mijn%20tuin."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="whatsapp-logo"
+                            src="https://cdn.simpleicons.org/whatsapp/092b17"
+                            alt=""
+                        >
+
+                        Stuur een WhatsApp
+                    </a>
+
+                    <span class="contact-opmerking">
+                        Stuur gerust enkele foto's van de tuin mee.
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inhoud container">
+            <span>© 2026 Boertien Groenwerk</span>
+
+            <span>
+                Tuinonderhoud · Snoeiwerk · Beplanting
+            </span>
+        </div>
+    </footer>
+
+    <script>
+        const menuKnop = document.querySelector(".menu-knop");
+        const menu = document.querySelector("#menu");
+
+        menuKnop.addEventListener("click", function () {
+            const geopend = menu.classList.toggle("open");
+
+            menuKnop.setAttribute(
+                "aria-expanded",
+                geopend.toString()
+            );
+        });
+
+        menu.addEventListener("click", function () {
+            menu.classList.remove("open");
+            menuKnop.setAttribute("aria-expanded", "false");
+        });
+    </script>
+</body>
+</html>
