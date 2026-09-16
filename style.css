@@ -18,11 +18,13 @@ header {
     text-align: center;
 }
 
-.bedrijfslogo {
-    display: block;
-    width: 35px;
-    max-height: 20px;
-    margin: 0 auto 12px;
+header .bedrijfslogo {
+    display: block !important;
+    width: 100px !important;
+    height: auto !important;
+    max-width: 100px !important;
+    max-height: 80px !important;
+    margin: 0 auto 10px !important;
     object-fit: contain;
 }
 
