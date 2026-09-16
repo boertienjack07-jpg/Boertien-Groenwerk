@@ -64,28 +64,30 @@ section h2 {
     section {
         padding: 25px;
     }
-.whatsapp-knop {
-    display: inline-flex;
+.contact-section .whatsapp-knop {
+    display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 15px;
-    padding: 14px 24px;
+    width: max-content;
+    gap: 6px;
+    margin: 10px 0 0 auto;
+    padding: 7px 11px;
     background-color: #25d366;
     color: white;
-    font-size: 17px;
+    font-size: 13px;
     font-weight: bold;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 6px;
     transition: 0.2s;
 }
 
 .whatsapp-logo {
-    width: 24px;
-    height: 24px;
+    width: 17px;
+    height: 17px;
 }
 
-.whatsapp-knop:hover {
+.contact-section .whatsapp-knop:hover {
     background-color: #1ebe5d;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+}
 }
 }
