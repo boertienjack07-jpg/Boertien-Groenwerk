@@ -64,9 +64,10 @@ section h2 {
     section {
         padding: 25px;
     }
-}
 .whatsapp-knop {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     margin-top: 15px;
     padding: 14px 24px;
     background-color: #25d366;
@@ -78,7 +79,13 @@ section h2 {
     transition: 0.2s;
 }
 
+.whatsapp-logo {
+    width: 24px;
+    height: 24px;
+}
+
 .whatsapp-knop:hover {
     background-color: #1ebe5d;
     transform: translateY(-2px);
+}
 }
